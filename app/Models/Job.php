@@ -17,4 +17,11 @@ class Job extends Model
     {
         return $this->belongsTo(Employer::class);
     }
+
+    // THÊM HÀM NÀY: Một công việc có thể gắn nhiều Thẻ (Tags)
+    public function tags()
+    {
+        // Vì bảng trung gian dùng cột 'job_listing_id' thay vì 'job_id', ta phải chỉ định rõ tên cột này ở tham số foreignPivotKey
+        return $this->belongsToMany(Tag::class, foreignPivotKey: 'job_listing_id');
+    }
 }
