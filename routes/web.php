@@ -26,7 +26,8 @@ Route::get('/contact', function () {
 });
 
 Route::get('/jobs', function () {
-    $jobs = Job::with('employer')->paginate(3);
+    // $jobs = Job::with('employer')->paginate(3); // Trang có hiển thị số trang
+    $jobs = Job::with('employer')->simplePaginate(3); // Trang đơn giản
     // $jobs = Job::all(); // Sẽ lỗi khi bật Model::preventLazyLoading();
     return view('jobs', [
         'jobs' => $jobs
