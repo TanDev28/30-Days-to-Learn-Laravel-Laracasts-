@@ -26,8 +26,10 @@ Route::get('/contact', function () {
 });
 
 Route::get('/jobs', function () {
+    $jobs = Job::with('employer')->get();
+    // $jobs = Job::all(); // Sẽ lỗi khi bật Model::preventLazyLoading();
     return view('jobs', [
-        'jobs' => Job::all()
+        'jobs' => $jobs
     ]);
 });
 
